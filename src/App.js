@@ -48,12 +48,23 @@ function App() {
     setResult(0);
   };
 
+  const handleNumberClick = (number) => {
+    if (inputRef.current) {
+      inputRef.current.value = inputRef.current.value + number;
+    }
+  };
+
   return (
     <div className="App">
       <h1 className="Title">Simplest Working Calculator</h1>
       <div className="Calculator">
         <Display result={result} />
         <InputField inputRef={inputRef} />
+        <div className="NumberContainer">
+          {[...Array(10).keys()].map((num) => (
+            <Button key={num} onClick={() => handleNumberClick(num)} text={num.toString()} />
+          ))}
+        </div>
         <div className="ButtonContainer">
           <Button onClick={() => handleOperation("add")} text="Add" />
           <Button onClick={() => handleOperation("subtract")} text="Subtract" />
