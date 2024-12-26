@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Tollars-Calculator/static/css/main.21c9e17b.css",
-    "main.js": "/Tollars-Calculator/static/js/main.e616fee1.js",
+    "main.js": "/Tollars-Calculator/static/js/main.c6c8d0b4.js",
     "static/js/453.22eb109f.chunk.js": "/Tollars-Calculator/static/js/453.22eb109f.chunk.js",
     "index.html": "/Tollars-Calculator/index.html",
     "main.21c9e17b.css.map": "/Tollars-Calculator/static/css/main.21c9e17b.css.map",
-    "main.e616fee1.js.map": "/Tollars-Calculator/static/js/main.e616fee1.js.map",
+    "main.c6c8d0b4.js.map": "/Tollars-Calculator/static/js/main.c6c8d0b4.js.map",
     "453.22eb109f.chunk.js.map": "/Tollars-Calculator/static/js/453.22eb109f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21c9e17b.css",
-    "static/js/main.e616fee1.js"
+    "static/js/main.c6c8d0b4.js"
   ]
 }
