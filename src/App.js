@@ -1,57 +1,69 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Display from "./Display";
 import InputField from "./InputField";
 import Button from "./Button";
 import "./App.css";
 
 function App() {
-  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState(""); // Stores the current input string (e.g., "10 +")
   const [result, setResult] = useState(0);
+  const [operation, setOperation] = useState(null); // Stores the selected operation
+  const [previousValue, setPreviousValue] = useState(null); // Stores the previous number before the operation
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus(); // Focus on the input field when the component mounts
+  const handleOperation = (selectedOperation) => {
+    if (inputValue) {
+      // Store the current input number before operation
+      setPreviousValue(Number(inputValue.trim())); // Trim spaces before storing the previous value
     }
-  }, []);
+    setOperation(selectedOperation);
+    setInputValue((prevValue) => prevValue + " " + selectedOperation + " "); // Show operation in input field (e.g., "10 + ")
+  };
 
-  const handleOperation = (operation) => {
-    const value = Number(inputRef.current.value);
-    if (isNaN(value) || inputRef.current.value === "") return; // Ignore if the input is not a number or is empty
+  const handleSubmit = () => {
+    if (previousValue === null || inputValue === "") return; // If there's no previous value, do nothing
 
+    const currentValue = Number(inputValue.split(" ").pop().trim()); // Extract the last number from the input and trim spaces
+    if (isNaN(currentValue)) return; // If it's not a number, do nothing
+
+    let newResult = result;
     switch (operation) {
-      case "add":
-        setResult((prevResult) => prevResult + value);
+      case "+":
+        newResult = previousValue + currentValue;
         break;
-      case "subtract":
-        setResult((prevResult) => prevResult - value);
+      case "-":
+        newResult = previousValue - currentValue;
         break;
-      case "multiply":
-        setResult((prevResult) => prevResult * value);
+      case "x":
+        newResult = previousValue * currentValue;
         break;
-      case "divide":
-        if (value === 0) {
+      case "÷":
+        if (currentValue === 0) {
           alert("Cannot divide by zero");
           return;
         }
-        setResult((prevResult) => prevResult / value);
+        newResult = previousValue / currentValue;
         break;
       default:
         break;
     }
+
+    setResult(newResult); // Update result
+    setInputValue(""); // Clear the input field after calculation
+    setPreviousValue(null); // Reset previous value
+    setOperation(null); // Reset operation
   };
 
   const handleResetInput = () => {
-    inputRef.current.value = "";
+    setInputValue(""); // Reset the input
   };
 
   const handleResetResult = () => {
-    setResult(0);
+    setResult(0); // Reset the result
   };
 
-  const handleNumberClick = (number) => {
-    if (inputRef.current) {
-      inputRef.current.value = inputRef.current.value + number;
-    }
+  const handleInputChange = (num) => {
+    // Append number to the input string
+    setInputValue((prevValue) => prevValue + num);
   };
 
   return (
@@ -59,21 +71,31 @@ function App() {
       <h1 className="Title">Simplest Working Calculator</h1>
       <div className="Calculator">
         <Display result={result} />
-        <InputField inputRef={inputRef} />
-        <div className="NumberContainer">
+        <InputField inputValue={inputValue} /> {/* Pass inputValue to InputField */}
+        <div className="NumberPad">
           {[...Array(10).keys()].map((num) => (
-            <Button key={num} onClick={() => handleNumberClick(num)} text={num.toString()} />
+            <Button
+              key={num}
+              onClick={() => handleInputChange(num.toString())}
+              text={num.toString()}
+            />
           ))}
         </div>
         <div className="ButtonContainer">
-          <Button onClick={() => handleOperation("add")} text="Add" />
-          <Button onClick={() => handleOperation("subtract")} text="Subtract" />
-          <Button onClick={() => handleOperation("multiply")} text="Multiply" />
-          <Button onClick={() => handleOperation("divide")} text="Divide" />
-          <Button onClick={handleResetInput} text="Reset Input" />
-          <Button onClick={handleResetResult} text="Reset Result" />
+          <Button onClick={() => handleOperation("+")} text="Add" />
+          <Button onClick={() => handleOperation("-")} text="Subtract" />
+          <Button onClick={() => handleOperation("x")} text="Multiply" />
+          <Button onClick={() => handleOperation("÷")} text="Divide" />
+          <Button onClick={handleSubmit} text="Equals" />
+        </div>
+        <div className="ButtonContainer1">
+          <Button onClick={handleResetInput} text="Clear Input" />
+          <Button onClick={handleResetResult} text="Clear Result" />
         </div>
       </div>
+      <footer>
+        <h5>&copy; Thollarkings 2024</h5>
+      </footer>
     </div>
   );
 }

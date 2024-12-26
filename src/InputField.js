@@ -1,16 +1,11 @@
 import React from "react";
-import "./App.css"; // Ensure you import the CSS file
 
-function InputField({ inputRef }) {
+const InputField = ({ inputValue }) => {
   return (
-    <input
-      className="InputField"
-      pattern="[0-9]"
-      ref={inputRef}
-      type="number"
-      placeholder="Type a number"
-    />
+    <div className="InputField">
+      <input type="text" value={inputValue} readOnly /> {/* Display the inputValue */}
+    </div>
   );
-}
+};
 
 export default InputField;
