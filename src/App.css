@@ -1,3 +1,4 @@
+/* General styles for all devices */
 * {
   font-family: sans-serif;
   box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
@@ -16,8 +17,7 @@ body {
 .App {
   background-color: linear-gradient(135deg, #583d4f, #f3e6f6); /* Background color for the container */
   border-radius: 15px; /* Rounded corners */
-  box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.5);
- /* Subtle shadow effect */
+  box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
   padding: 20px; /* Padding inside the container */
   width: 600px; /* Fixed width for the container */
   border: 2px solid rgb(90, 3, 74);
@@ -44,6 +44,7 @@ body {
   flex-direction: column; /* Stack children in a column */
   align-items: center; /* Center horizontally */
 }
+
 .InputField {
   margin-bottom: 20px;
 }
@@ -72,18 +73,15 @@ body {
   color: #aaa; /* Placeholder text color */
 }
 
-
 .ButtonContainer {
   display: flex; /* Align buttons horizontally */
   justify-content: center; /* Center buttons horizontally */
   gap: 10px; /* Space between buttons */
   flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
   width: 400px;
-   
 }
 
 .ButtonContainer button:last-child {
-  /* Add your styles for the last button here */
   font-size: 20px;
   padding: 12px 24px;
   background: rgb(41, 126, 2);
@@ -94,16 +92,14 @@ body {
   border: 5px outset rgb(152, 88, 88); /* Border color */
 }
 
-
 .ButtonContainer1 Button {
-    background: linear-gradient(135deg, #4d0340, #ad7878, #3f0334); /* Highlight color for last two buttons */
-    color: white; /* Text color for highlighted buttons */
-  }
-  
-  .ButtonContainer1 {
-    margin-top: 20px;
-  }
+  background: linear-gradient(135deg, #4d0340, #ad7878, #3f0334); /* Highlight color for last two buttons */
+  color: white; /* Text color for highlighted buttons */
+}
 
+.ButtonContainer1 {
+  margin-top: 20px;
+}
 
 .NumberPad {
   width: 400px;
@@ -122,9 +118,8 @@ body {
   height: auto; /* Let the height adjust based on padding and font size */
   border-radius: 5px; /* Keep rounded corners */
   border: 5px outset rgb(152, 88, 88); /* Border color */
-  background:linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0); /* Background color */
+  background: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0); /* Background color */
   margin-right: 5px; /* Space between buttons */
-  
 }
 
 .button {
@@ -133,14 +128,13 @@ body {
   height: auto; /* Let the height adjust based on padding and font size */
   border-radius: 5px; /* Keep rounded corners */
   border: 5px outset rgb(152, 88, 88); /* Border color */
-  background:linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0); /* Background color */
+  background: linear-gradient(135deg, #a0a0a0, #ffffff, #a0a0a0); /* Background color */
   margin-right: 5px; /* Space between buttons */
-  
 }
 
+/* Footer styles */
 footer {
   display: flex;
-  
   top: 0;
   bottom: 0;
   right: 0; /* Align the footer to the right side of the page */
@@ -154,3 +148,76 @@ footer h5 {
   text-align: right; /* Align the text to the right within the footer */
 }
 
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+  .App {
+    width: 90%; /* Make the calculator container take up 90% of the width */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .Title {
+    font-size: 28px; /* Make title font size smaller */
+  }
+
+  .Display {
+    font-size: 20px; /* Adjust font size */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .Calculator {
+    width: 100%; /* Ensure calculator width takes full screen */
+  }
+
+  .InputField input {
+    font-size: 2rem; /* Smaller font size */
+    max-width: 100%; /* Input field should take full width on smaller screens */
+  }
+
+  .ButtonContainer {
+    width: 100%; /* Make buttons take full width */
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+  }
+
+  .ButtonContainer button {
+    font-size: 18px; /* Adjust button font size */
+    padding: 10px 20px; /* Adjust button padding */
+    width: 100%; /* Make buttons take full width */
+    margin: 5px 0; /* Add some vertical margin between buttons */
+  }
+
+  .NumberPad {
+    width: 100%; /* Ensure number pad takes full width */
+  }
+
+  footer h5 {
+    font-size: 0.8em; /* Make footer text smaller */
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    width: 100%; /* Full width for very small devices */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .Title {
+    font-size: 24px; /* Smaller font size for title */
+  }
+
+  .Display {
+    font-size: 18px; /* Smaller font size for the display */
+  }
+
+  .InputField input {
+    font-size: 1.8rem; /* Smaller font size for input field */
+  }
+
+  .ButtonContainer button {
+    font-size: 16px; /* Smaller font size for buttons */
+    padding: 8px 16px; /* Adjust padding */
+  }
+
+  footer h5 {
+    font-size: 0.75em; /* Even smaller footer text */
+  }
+}
